@@ -1,0 +1,89 @@
+(venv) remnux@remnux:~/re$ frida -U -f net.time.good.tree -l e-tax/enhanced_hook.js 
+     ____
+    / _  |   Frida 16.7.19 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Android Emulator 5554 (id=emulator-5554)
+Spawned `net.time.good.tree`. Resuming main thread!                     
+[Android Emulator 5554::net.time.good.tree ]-> [*] =======================================================
+[*] [ALL-IN-ONE] Enhanced Hook loaded for: net.time.good.tree
+[*] Dump directory set to: /data/data/net.time.good.tree
+[*] =======================================================
+[+] Hooked Anti-Sandbox/Emulator: net.time.good.tree.Sd
+[+] Hooked String Decryptor: net.time.good.tree.SC.d
+[+] Hooked Payload Loader: net.time.good.tree.Pd
+[STR_DEC] "਍ːࣱ਎˘࣢਽ˑ" => "SigPatch"
+[STR_DEC] "ਟ˩ࣝ੾˪ࣿਹʙࣔਲ˖ࣵਵʙࢢ੬" => "APK Sig Block 42"
+[+] Hooked Signing Processor: net.time.good.tree.Sp.m0
+[+] Hooked PackageInstaller & unknown sources bypass
+[STR_DEC] "਍ˑࣳਲ˕ࣗ" => "ShellA"
+[+] Hooked MainActivity flow triggers: net.time.good.tree.MainActivity
+[+] Hooked all methods of JavaScriptInterface: b2.n
+[STR_DEC] "ਿ˦ࣥਪ˘࣢਻" => "a_state"
+[STR_DEC] "ਬ˜ࣦ਱ˋ࣢਻˝" => "reported"
+[+] [BYPASS] Sd.isSandboxEnvironment called -> forced return FALSE
+[STR_DEC] "ਿ˗ࣲਬ˖ࣿ਺ʗࣿਰˍࣳਰˍࢸਿ˚࣢਷˖ࣸੰ˩ࣗਝ˲ࣗਙ˼ࣉਟ˽࣒ਛ˽" => "android.intent.action.PACKAGE_ADDED"
+[STR_DEC] "ਮ˘ࣵਵ˘ࣱ਻" => "package"
+[STR_DEC] "਋ˉࣱਬ˘ࣲ਻˦ࣃਗ" => "Upgrade_UI"
+[STR_DEC] "ਫˉࣱਬ˘ࣲ਻˦ࣦਬ˖ࣱਬ˜ࣥਭ" => "upgrade_progress"
+[STR_DEC] "ਮˋࣹਹˋࣳਭˊࣉ਼˘ࣤ" => "progress_bar"
+[STR_DEC] "ਫˉࣱਬ˘ࣲ਻˦࣢਻ˁ࣢" => "upgrade_text"
+
+[Intent::startService] Action: null, Component: net.time.good.tree/net.time.good.tree.Bv
+[+] [BYPASS] canRequestPackageInstalls called -> forced return TRUE (Bypassing wait loop)
+
+[+] [PAYLOAD] Pd.load(context) called! Decrypting asset payload...
+[STR_DEC] "ਜ˕ࣹ਽˒ࣀਮ˗" => "BlockVpn"
+[+] [Pd.k0] Key generation arg: "139473be88e0fa3cf535f21b7b905477", Generated Key(Hex): 139473be88e0fa3cf535f21b7b905477
+[+] [Pd.dec] Called with str: "R3vVAfKcV", Input size: 16 bytes
+[STR_DEC] "੯ʉࢸ੧ʀࢸ੮ʗࢧ" => "10.99.0.1"
+[VPN::Config] addAddress: 10.99.0.1/32
+[STR_DEC] "੮ʗࢦੰʉࢸ੮" => "0.0.0.0"
+[VPN::Config] addRoute: 0.0.0.0/0
+[+] [VPN::Establish] VpnService$Builder.establish() called! TUN interface opening.
+[STR_DEC] "ਈ˩ࣘ੾˜ࣥਪ˘ࣴਲːࣥਸ਼˜ࣲੲʙࣸ਻ˍ࣡਱ˋࣽ੾˛ࣺ਱˚ࣽ਻˝" => "VPN established, network blocked"
+[Crypto::Key] SecretKeySpec Created! Algo: AES, Key(Hex): 139473be88e0fa3cf535f21b7b905477
+[Crypto::Cipher] doFinal executed (Algorithm: AES/CBC/PKCS5Padding)
+[+] [Pd.dec] Output size: 10899352 bytes
+[+] [Pd.dec] Called with str: "mcNDf1aEO0jvo9", Input size: 16 bytes
+[Crypto::Key] SecretKeySpec Created! Algo: AES, Key(Hex): 139473be88e0fa3cf535f21b7b905477
+[Crypto::Cipher] doFinal executed (Algorithm: AES/CBC/PKCS5Padding)
+[+] [Pd.dec] Output size: 10899353 bytes
+[+] [Pd.decompress] Input size: 21798705 bytes
+[+] [Pd.decompress] Output decompressed size: 22700782 bytes
+[+] [PAYLOAD] Decrypted raw payload: 22700782 bytes
+[***] SAVED TO: /data/data/net.time.good.tree/dumped_payload_raw.bin
+      (Pull command: adb pull /data/data/net.time.good.tree/dumped_payload_raw.bin)
+
+[+] [PAYLOAD] Sp.m0 called (signing block processing)...
+[STR_DEC] "ਗ˗ࣼ਻˚࣢਻˝ࢶਬ˘ࣸ਺˖ࣻ੾˛࣯ਪ˜ࣥ੾ːࣸਪ˖ࢶਭːࣱਰːࣸਹʙࣴਲ˖ࣵਵ" => "Injected random bytes into signing block"
+[+] [PAYLOAD] Final modified APK ready: 22701003 bytes
+[***] SAVED TO: /data/data/net.time.good.tree/dumped_payload_final.apk
+      (Pull command: adb pull /data/data/net.time.good.tree/dumped_payload_final.apk)
+[+] [BYPASS] canRequestPackageInstalls called -> forced return TRUE (Bypassing wait loop)
+[STR_DEC] "ਸ਼ˍ࣢ਮˊࢬੱʖࣦਲ˘࣯ੰ˞ࣹ਱˞ࣺ਻ʗࣵ਱˔ࢹਭˍࣹਬ˜" => "https://play.google.com/store"
+[STR_DEC] "ਸ਼ˍ࣢ਮˊࢬੱʖࣦਲ˘࣯ੰ˞ࣹ਱˞ࣺ਻ʗࣵ਱˔" => "https://play.google.com"
+
+[+] [INSTALLER] createSession created (ID: 1545008885)
+[STR_DEC] "਼˘ࣥ਻ʗࣷਮ˒" => "base.apk"
+[+] [INSTALLER] Session.openWrite: Name="base.apk", Offset=0, Length=22701003
+[+] [INSTALLER] Session.commit() called! Silent installation initiated.
+[STR_DEC] "਍ˑࣳਲ˕ࣗ" => "ShellA"
+[STR_DEC] "ਬ˜ࣰਬ˜ࣥਸ਼ʙࣵਬ˜ࣷਪ˜" => "refresh create"
+[STR_DEC] "ਭˍࣹਮ˯ࣦਰʙࣤ਻ˈࣣ਻ˊ࣢਻˝" => "stopVpn requested"
+[STR_DEC] "ਭˍࣹਮ˯ࣦਰʙࣲ਱˗ࣳ" => "stopVpn done"
+[STR_DEC] "਋ˉࣲਿˍࣳ੾˿ࣷ਷˕ࣳ਺ʃࢶਭˍࣷਪˌࣥ੣" => "Update Failed: status="
+[STR_DEC] "ੲʙࣻਭ˞ࢫ" => ", msg="
+
+[Intent::startActivity] Action: android.intent.action.VIEW, Component: none
+[STR_DEC] "ਈ˩ࣘ੾ˊࣳਬˏࣿ਽˜ࢶ਺˜ࣥਪˋࣹਧ˜ࣲ" => "VPN service destroyed"
+Process terminated
+[Android Emulator 5554::net.time.good.tree ]->
+
+Thank you for using Frida!

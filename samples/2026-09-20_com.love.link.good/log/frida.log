@@ -1,0 +1,72 @@
+(venv) remnux@remnux:~/re$ frida -U -f com.love.link.good -l hook.js
+     ____
+    / _  |   Frida 16.7.19 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Android Emulator 5554 (id=emulator-5554)
+Spawned `com.love.link.good`. Resuming main thread!                     
+[Android Emulator 5554::com.love.link.good ]-> [*] =======================================================
+[*] [ALL-IN-ONE] Hook script loaded for com.love.link.good
+[*] =======================================================
+[STR_DEC] "਍ːࣱ਎˘࣢਽ˑ" => "SigPatch"
+[STR_DEC] "ਟ˩ࣝ੾˪ࣿਹʙࣔਲ˖ࣵਵʙࢢ੬" => "APK Sig Block 42"
+[+] Hooked all methods of JavaScriptInterface: b2.n
+[STR_DEC] "਍ˑࣳਲ˕ࣗ" => "ShellA"
+[STR_DEC] "ਿ˦ࣥਪ˘࣢਻" => "a_state"
+[STR_DEC] "ਬ˜ࣦ਱ˋ࣢਻˝" => "reported"
+[+] [BYPASS] Sd.isSandboxEnvironment called -> forced return FALSE
+[STR_DEC] "ਿ˗ࣲਬ˖ࣿ਺ʗࣿਰˍࣳਰˍࢸਿ˚࣢਷˖ࣸੰ˩ࣗਝ˲ࣗਙ˼ࣉਟ˽࣒ਛ˽" => "android.intent.action.PACKAGE_ADDED"
+[STR_DEC] "ਮ˘ࣵਵ˘ࣱ਻" => "package"
+[STR_DEC] "਋ˉࣱਬ˘ࣲ਻˦ࣃਗ" => "Upgrade_UI"
+[STR_DEC] "ਫˉࣱਬ˘ࣲ਻˦ࣦਬ˖ࣱਬ˜ࣥਭ" => "upgrade_progress"
+[STR_DEC] "ਮˋࣹਹˋࣳਭˊࣉ਼˘ࣤ" => "progress_bar"
+[STR_DEC] "ਫˉࣱਬ˘ࣲ਻˦࣢਻ˁ࣢" => "upgrade_text"
+[HTTP::Connect] -> https://www.knjw.shop/n/ir
+[STR_DEC] "਎˶ࣅਊ" => "POST"
+[STR_DEC] "ਝ˖ࣸਪ˜ࣸਪʔࣂਧˉࣳ" => "Content-Type"
+[STR_DEC] "ਿˉࣦਲːࣵਿˍࣿ਱˗ࢹ਴ˊࣹਰ" => "application/json"
+[STR_DEC] "ਬ˜ࣦ਱ˋ࣢਻˝" => "reported"
+
+[Intent::startService] Action: null, Component: com.love.link.good/com.love.link.good.Bv
+[STR_DEC] "਷˗ࣥਪ˘ࣺਲːࣸਹ" => "installing"
+[STR_DEC] "ਜ˕ࣹ਽˒ࣀਮ˗" => "BlockVpn"
+[STR_DEC] "੯ʉࢸ੧ʀࢸ੮ʗࢧ" => "10.99.0.1"
+[VPN::Config] addAddress: 10.99.0.1/32
+[STR_DEC] "੮ʗࢦੰʉࢸ੮" => "0.0.0.0"
+[VPN::Config] addRoute: 0.0.0.0/0
+[STR_DEC] "ਈ˩ࣘ੾˜ࣥਪ˘ࣴਲːࣥਸ਼˜ࣲੲʙࣸ਻ˍ࣡਱ˋࣽ੾˛ࣺ਱˚ࣽ਻˝" => "VPN established, network blocked"
+[STR_DEC] "ਿ˗ࣲਬ˖ࣿ਺ʗࣥ਻ˍ࣢਷˗ࣱਭʗࣛਟ˷ࣗਙ˼ࣉ਋˷ࣝਐ˶ࣁਐ˦ࣗ਎˩ࣉ਍˶ࣃ਌˺࣓਍" => "android.settings.MANAGE_UNKNOWN_APP_SOURCES"
+[STR_DEC] "ਮ˘ࣵਵ˘ࣱ਻ʃ" => "package:"
+
+[Intent::startActivity] Action: android.settings.MANAGE_UNKNOWN_APP_SOURCES, Component: none
+
+[Intent::startActivity] Action: null, Component: com.love.link.good/com.love.link.good.MainActivity
+[+] [PAYLOAD] Pd.load(context) called! Decrypting asset payload...
+[Crypto::Key] SecretKeySpec Created! Algo: AES, Key(Hex): 3aee1e359a09183fc37df2953390b393
+[Crypto::Cipher] doFinal executed (Algorithm: AES/CBC/PKCS5Padding)
+[Crypto::Key] SecretKeySpec Created! Algo: AES, Key(Hex): 3aee1e359a09183fc37df2953390b393
+[Crypto::Cipher] doFinal executed (Algorithm: AES/CBC/PKCS5Padding)
+[+] [PAYLOAD] Decrypted raw payload: 22700782 bytes
+[***] SAVED TO: /data/data/com.love.link.good/dumped_payload_raw.bin (Pull: adb pull /data/data/com.love.link.good/dumped_payload_raw.bin)
+[+] [PAYLOAD] Sp.m0 called (signing block processing)...
+[STR_DEC] "ਗ˗ࣼ਻˚࣢਻˝ࢶਬ˘ࣸ਺˖ࣻ੾˛࣯ਪ˜ࣥ੾ːࣸਪ˖ࢶਭːࣱਰːࣸਹʙࣴਲ˖ࣵਵ" => "Injected random bytes into signing block"
+[+] [PAYLOAD] Final modified APK ready: 22700891 bytes
+[***] SAVED TO: /data/data/com.love.link.good/dumped_payload_final.apk (Pull: adb pull /data/data/com.love.link.good/dumped_payload_final.apk)
+[STR_DEC] "ਸ਼ˍ࣢ਮˊࢬੱʖࣦਲ˘࣯ੰ˞ࣹ਱˞ࣺ਻ʗࣵ਱˔ࢹਭˍࣹਬ˜" => "https://play.google.com/store"
+[STR_DEC] "ਸ਼ˍ࣢ਮˊࢬੱʖࣦਲ˘࣯ੰ˞ࣹ਱˞ࣺ਻ʗࣵ਱˔" => "https://play.google.com"
+[STR_DEC] "਼˘ࣥ਻ʗࣷਮ˒" => "base.apk"
+[STR_DEC] "਍ˑࣳਲ˕ࣗ" => "ShellA"
+[STR_DEC] "ਬ˜ࣰਬ˜ࣥਸ਼ʙࣵਬ˜ࣷਪ˜" => "refresh create"
+[STR_DEC] "ਭˍࣹਮ˯ࣦਰʙࣤ਻ˈࣣ਻ˊ࣢਻˝" => "stopVpn requested"
+[STR_DEC] "ਭˍࣹਮ˯ࣦਰʙࣲ਱˗ࣳ" => "stopVpn done"
+[STR_DEC] "਋ˉࣲਿˍࣳ੾˿ࣷ਷˕ࣳ਺ʃࢶਭˍࣷਪˌࣥ੣" => "Update Failed: status="
+[STR_DEC] "ੲʙࣻਭ˞ࢫ" => ", msg="
+
+[Intent::startActivity] Action: android.intent.action.VIEW, Component: none
+[STR_DEC] "ਈ˩ࣘ੾ˊࣳਬˏࣿ਽˜ࢶ਺˜ࣥਪˋࣹਧ˜ࣲ" => "VPN service destroyed"

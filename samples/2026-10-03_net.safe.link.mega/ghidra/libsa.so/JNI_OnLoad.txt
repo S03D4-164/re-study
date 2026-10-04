@@ -1,0 +1,105 @@
+
+undefined4 JNI_OnLoad(long *param_1)
+
+{
+  long lVar1;
+  char cVar2;
+  int iVar3;
+  int iVar4;
+  undefined8 uVar5;
+  undefined8 uVar6;
+  undefined8 uVar7;
+  char *__s;
+  size_t sVar8;
+  undefined4 uVar9;
+  int iVar10;
+  long lVar11;
+  char **ppcVar12;
+  long *local_178;
+  char *local_170;
+  char *pcStack_168;
+  code *local_160;
+  undefined1 local_71;
+  long local_70;
+  
+  lVar1 = tpidr_el0;
+  local_70 = *(long *)(lVar1 + 0x28);
+  iVar3 = (**(code **)(*param_1 + 0x30))(param_1,&local_178,0x10006);
+  if (iVar3 != 0) {
+    uVar9 = 0xffffffff;
+    goto LAB_001014ec;
+  }
+  uVar5 = (**(code **)(*local_178 + 0x30))(local_178,"java/lang/Thread");
+  uVar6 = (**(code **)(*local_178 + 0x388))(local_178,uVar5,"currentThread","()Ljava/lang/Thread;");
+  uVar6 = (**(code **)(*local_178 + 0x390))(local_178,uVar5,uVar6);
+  uVar5 = (**(code **)(*local_178 + 0x108))
+                    (local_178,uVar5,"getStackTrace","()[Ljava/lang/StackTraceElement;");
+  uVar5 = (**(code **)(*local_178 + 0x110))(local_178,uVar6,uVar5);
+  uVar6 = (**(code **)(*local_178 + 0x30))(local_178,"java/lang/StackTraceElement");
+  uVar6 = (**(code **)(*local_178 + 0x108))(local_178,uVar6,"getClassName","()Ljava/lang/String;");
+  iVar3 = (**(code **)(*local_178 + 0x558))(local_178,uVar5);
+  if (0 < iVar3) {
+    iVar10 = 0;
+LAB_00101350:
+    uVar7 = (**(code **)(*local_178 + 0x568))(local_178,uVar5,iVar10);
+    uVar7 = (**(code **)(*local_178 + 0x110))(local_178,uVar7,uVar6);
+    __s = (char *)(**(code **)(*local_178 + 0x548))(local_178,uVar7,0);
+    sVar8 = strlen(__s);
+    lVar11 = 0;
+    if (2 < (int)sVar8) {
+      iVar4 = strcmp(__s + (long)(int)sVar8 + -3,".Sa");
+      if (iVar4 == 0) {
+        ppcVar12 = &local_170;
+        strncpy((char *)&local_170,__s,0xff);
+        local_71 = 0;
+        do {
+          if (*(char *)ppcVar12 == '.') {
+            *(char *)ppcVar12 = '/';
+          }
+          else if (*(char *)ppcVar12 == '\0') goto code_r0x001013f8;
+          ppcVar12 = (char **)((long)ppcVar12 + 1);
+        } while( true );
+      }
+      goto LAB_00101438;
+    }
+    goto LAB_0010143c;
+  }
+  goto LAB_001014d4;
+code_r0x001013f8:
+  lVar11 = (**(code **)(*local_178 + 0x30))(local_178,&local_170);
+  cVar2 = (**(code **)(*local_178 + 0x720))();
+  if (cVar2 != '\0') {
+    (**(code **)(*local_178 + 0x88))();
+LAB_00101438:
+    lVar11 = 0;
+  }
+LAB_0010143c:
+  (**(code **)(*local_178 + 0x550))(local_178,uVar7,__s);
+  iVar10 = iVar10 + 1;
+  if ((iVar3 <= iVar10) || (lVar11 != 0)) goto LAB_00101464;
+  goto LAB_00101350;
+LAB_00101464:
+  uVar9 = 0x10006;
+  if (lVar11 != 0) {
+    pcStack_168 = "(Landroid/content/Context;)V";
+    local_170 = "nativeInit";
+    local_160 = FUN_00101524;
+    iVar3 = (**(code **)(*local_178 + 0x6b8))(local_178,lVar11,&local_170,1);
+    if (iVar3 < 0) {
+      __android_log_print(6,&DAT_001008f0,"reg fail");
+      (**(code **)(*local_178 + 0x88))();
+    }
+    goto LAB_001014ec;
+  }
+LAB_001014d4:
+  uVar9 = 0x10006;
+  __android_log_print(6,&DAT_001008f0,"Sa not found");
+LAB_001014ec:
+  if (*(long *)(lVar1 + 0x28) == local_70) {
+    return uVar9;
+  }
+                    /* WARNING: Subroutine does not return */
+  __stack_chk_fail();
+}
+
+
