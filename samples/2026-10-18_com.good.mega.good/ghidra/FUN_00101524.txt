@@ -1,0 +1,476 @@
+void FUN_00101524(long *param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  bool bVar1;
+  uint uVar2;
+  uint uVar3;
+  int iVar4;
+  char cVar5;
+  int iVar6;
+  undefined8 uVar7;
+  long lVar8;
+  long lVar9;
+  undefined8 uVar10;
+  long lVar11;
+  undefined8 uVar12;
+  undefined8 uVar13;
+  long lVar14;
+  size_t __size;
+  uint *__ptr;
+  void *__ptr_00;
+  void *__ptr_01;
+  FILE *__s;
+  undefined8 uVar15;
+  undefined8 uVar16;
+  undefined8 uVar17;
+  undefined8 uVar18;
+  char *pcVar19;
+  undefined8 uVar20;
+  long lVar21;
+  char *pcVar22;
+  ulong uVar23;
+  ulong uVar24;
+  long lVar25;
+  uint uVar26;
+  uint uVar27;
+  long lVar28;
+  code *pcVar29;
+  long local_278;
+  char acStack_270 [512];
+  long local_70;
+  
+  lVar25 = tpidr_el0;
+  local_70 = *(long *)(lVar25 + 0x28);
+  uVar7 = (**(code **)(*param_1 + 0xf8))();
+  lVar8 = (**(code **)(*param_1 + 0x480))(param_1,uVar7,&DAT_001008f3,"Ljava/lang/String;");
+  lVar9 = (**(code **)(*param_1 + 0x480))(param_1,uVar7,&DAT_00100bc9,&DAT_0010094b);
+  if ((lVar8 == 0) || (lVar9 == 0)) {
+    pcVar19 = "fields missing";
+  }
+  else {
+    lVar8 = (**(code **)(*param_1 + 0x488))(param_1,uVar7,lVar8);
+    lVar9 = (**(code **)(*param_1 + 0x488))(param_1,uVar7,lVar9);
+    if ((lVar8 != 0) && (lVar9 != 0)) {
+      uVar10 = (**(code **)(*param_1 + 0x548))(param_1,lVar8,0);
+      iVar6 = (**(code **)(*param_1 + 0x558))(param_1,lVar9);
+      lVar11 = (**(code **)(*param_1 + 0x5c0))(param_1,lVar9,0);
+      uVar12 = (**(code **)(*param_1 + 0xf8))(param_1,param_3);
+      uVar13 = (**(code **)(*param_1 + 0x108))
+                         (param_1,uVar12,"getAssets","()Landroid/content/res/AssetManager;");
+      uVar13 = (**(code **)(*param_1 + 0x110))(param_1,param_3,uVar13);
+      uVar13 = AAssetManager_fromJava(param_1,uVar13);
+      lVar14 = AAssetManager_open(uVar13,uVar10,3);
+      (**(code **)(*param_1 + 0x550))(param_1,lVar8,uVar10);
+      if (lVar14 == 0) {
+        pcVar19 = "asset open fail";
+        uVar7 = 6;
+LAB_00102108:
+        __android_log_print(uVar7,&DAT_001008f0,pcVar19);
+      }
+      else {
+        __size = AAsset_getLength(lVar14);
+        __ptr = malloc(__size);
+        AAsset_read(lVar14,__ptr,__size);
+        AAsset_close(lVar14);
+        uVar27 = (uint)__size;
+        if (0 < (int)uVar27) {
+          uVar23 = 0;
+          do {
+            iVar4 = 0;
+            if (iVar6 != 0) {
+              iVar4 = (int)uVar23 / iVar6;
+            }
+            *(byte *)((long)__ptr + uVar23) =
+                 *(byte *)((long)__ptr + uVar23) ^
+                 *(byte *)(lVar11 + (ulong)(uint)((int)uVar23 - iVar4 * iVar6));
+            uVar23 = uVar23 + 1;
+          } while ((__size & 0xffffffff) != uVar23);
+        }
+        (**(code **)(*param_1 + 0x600))(param_1,lVar9,lVar11,2);
+        if ((long)__size < 8) {
+          __android_log_print(6,&DAT_001008f0,"too small");
+        }
+        else {
+          uVar3 = *__ptr;
+          uVar23 = (ulong)uVar3;
+          if (0xffffffeb < uVar3 - 0x15) {
+            __android_log_print(4,&DAT_001008f0,"dec %d bytes, %u dex",__size & 0xffffffff,uVar3);
+            uVar10 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar12,"getClassLoader","()Ljava/lang/ClassLoader;");
+            local_278 = (**(code **)(*param_1 + 0x110))(param_1,param_3,uVar10);
+            if (local_278 == 0) {
+              uVar10 = (**(code **)(*param_1 + 0x30))(param_1,"java/lang/ClassLoader");
+              uVar13 = (**(code **)(*param_1 + 0x388))
+                                 (param_1,uVar10,"getSystemClassLoader","()Ljava/lang/ClassLoader;")
+              ;
+              local_278 = (**(code **)(*param_1 + 0x390))(param_1,uVar10,uVar13);
+            }
+            lVar8 = (**(code **)(*param_1 + 0x30))(param_1,"dalvik/system/InMemoryDexClassLoader");
+            if ((lVar8 == 0) || (cVar5 = (**(code **)(*param_1 + 0x720))(param_1), cVar5 != '\0')) {
+              (**(code **)(*param_1 + 0x88))(param_1);
+              bVar1 = false;
+            }
+            else {
+              bVar1 = true;
+            }
+            uVar10 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar12,"getApplicationInfo",
+                                "()Landroid/content/pm/ApplicationInfo;");
+            lVar9 = (**(code **)(*param_1 + 0x110))(param_1,param_3,uVar10);
+            uVar10 = 0;
+            if (lVar9 != 0) {
+              uVar10 = (**(code **)(*param_1 + 0xf8))(param_1,lVar9);
+              lVar11 = (**(code **)(*param_1 + 0x2f0))
+                                 (param_1,uVar10,"nativeLibraryDir","Ljava/lang/String;");
+              if (lVar11 == 0) {
+                uVar10 = 0;
+              }
+              else {
+                uVar10 = (**(code **)(*param_1 + 0x2f8))(param_1,lVar9,lVar11);
+              }
+            }
+            __ptr_00 = malloc(uVar23 << 3);
+            __ptr_01 = malloc(uVar23 << 2);
+            uVar24 = 0;
+            uVar26 = 4;
+            do {
+              uVar2 = uVar26 + 4;
+              if (uVar27 < uVar2) {
+LAB_00101a1c:
+                __android_log_print(6,&DAT_001008f0,"trunc");
+                break;
+              }
+              iVar6 = *(int *)((long)__ptr + (ulong)uVar26);
+              *(int *)((long)__ptr_01 + uVar24 * 4) = iVar6;
+              uVar26 = iVar6 + uVar2;
+              if (uVar27 < uVar26) goto LAB_00101a1c;
+              *(ulong *)((long)__ptr_00 + uVar24 * 8) = (long)__ptr + (ulong)uVar2;
+              uVar24 = uVar24 + 1;
+            } while (uVar23 != uVar24);
+            if (bVar1) {
+              uVar12 = (**(code **)(*param_1 + 0x30))(param_1,"java/nio/ByteBuffer");
+              uVar12 = (**(code **)(*param_1 + 0x560))(param_1,uVar23,uVar12,0);
+              uVar24 = 0;
+              do {
+                lVar9 = (**(code **)(*param_1 + 0x728))
+                                  (param_1,*(undefined8 *)((long)__ptr_00 + uVar24 * 8),
+                                   *(undefined4 *)((long)__ptr_01 + uVar24 * 4));
+                if (lVar9 != 0) {
+                  (**(code **)(*param_1 + 0x570))(param_1,uVar12,uVar24 & 0xffffffff,lVar9);
+                }
+                uVar24 = uVar24 + 1;
+              } while (uVar23 != uVar24);
+              uVar13 = (**(code **)(*param_1 + 0x108))
+                                 (param_1,lVar8,"<init>",
+                                  "([Ljava/nio/ByteBuffer;Ljava/lang/String;Ljava/lang/ClassLoader;) V"
+                                 );
+              lVar8 = (**(code **)(*param_1 + 0xe0))(param_1,lVar8,uVar13,uVar12,uVar10,local_278);
+              if (lVar8 != 0) {
+                __android_log_print(4,&DAT_001008f0,"IMCL created with %u dex, libDir set",uVar23);
+                local_278 = lVar8;
+              }
+            }
+            else {
+              uVar10 = (**(code **)(*param_1 + 0x108))
+                                 (param_1,uVar12,"getCacheDir","()Ljava/io/File;");
+              uVar10 = (**(code **)(*param_1 + 0x110))(param_1,param_3,uVar10);
+              uVar12 = (**(code **)(*param_1 + 0xf8))(param_1,uVar10);
+              uVar12 = (**(code **)(*param_1 + 0x108))
+                                 (param_1,uVar12,"getAbsolutePath","()Ljava/lang/String;");
+              uVar10 = (**(code **)(*param_1 + 0x110))(param_1,uVar10,uVar12);
+              uVar12 = (**(code **)(*param_1 + 0x548))(param_1,uVar10,0);
+              uVar13 = (**(code **)(*param_1 + 0x30))(param_1,"dalvik/system/DexClassLoader");
+              uVar15 = (**(code **)(*param_1 + 0x108))
+                                 (param_1,uVar13,"<init>",
+                                  "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang /ClassLoader;)V"
+                                 );
+              if (0 < (int)uVar3) {
+                do {
+                  uVar24 = uVar23 - 1;
+                  FUN_00102abc(acStack_270);
+                  __s = fopen(acStack_270,"wb");
+                  if (__s != (FILE *)0x0) {
+                    fwrite(*(void **)((long)__ptr_00 + (uVar24 & 0xffffffff) * 8),1,
+                           (ulong)*(uint *)((long)__ptr_01 + (uVar24 & 0xffffffff) * 4),__s);
+                    fclose(__s);
+                    uVar16 = (**(code **)(*param_1 + 0x538))(param_1,acStack_270);
+                    lVar8 = (**(code **)(*param_1 + 0xe0))
+                                      (param_1,uVar13,uVar15,uVar16,uVar10,0,local_278);
+                    if (lVar8 != 0) {
+                      local_278 = lVar8;
+                    }
+                    remove(acStack_270);
+                  }
+                  bVar1 = 1 < (long)uVar23;
+                  uVar23 = uVar24;
+                } while (bVar1);
+              }
+              (**(code **)(*param_1 + 0x550))(param_1,uVar10,uVar12);
+              free(__ptr);
+            }
+            free(__ptr_00);
+            free(__ptr_01);
+            uVar10 = (**(code **)(*param_1 + 0x30))(param_1,"android/app/ActivityThread");
+            uVar12 = (**(code **)(*param_1 + 0x388))
+                               (param_1,uVar10,"currentActivityThread",
+                                "()Landroid/app/ActivityThread;");
+            uVar12 = (**(code **)(*param_1 + 0x390))(param_1,uVar10,uVar12);
+            uVar13 = (**(code **)(*param_1 + 0x2f0))
+                               (param_1,uVar10,"mPackages","Landroid/util/ArrayMap;");
+            uVar13 = (**(code **)(*param_1 + 0x2f8))(param_1,uVar12,uVar13);
+            uVar15 = (**(code **)(*param_1 + 0xf8))(param_1,uVar13);
+            uVar15 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar15,"values","()Ljava/util/Collection;");
+            uVar13 = (**(code **)(*param_1 + 0x110))(param_1,uVar13,uVar15);
+            uVar15 = (**(code **)(*param_1 + 0xf8))(param_1,uVar13);
+            uVar15 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar15,"iterator","()Ljava/util/Iterator;");
+            uVar13 = (**(code **)(*param_1 + 0x110))(param_1,uVar13,uVar15);
+            uVar15 = (**(code **)(*param_1 + 0xf8))(param_1,uVar13);
+            uVar16 = (**(code **)(*param_1 + 0x108))(param_1,uVar15,"hasNext",&DAT_00100da9);
+            uVar15 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar15,&DAT_001009b8,"()Ljava/lang/Object;");
+            cVar5 = (**(code **)(*param_1 + 0x128))(param_1,uVar13,uVar16);
+            while (cVar5 != '\0') {
+              uVar17 = (**(code **)(*param_1 + 0x110))(param_1,uVar13,uVar15);
+              uVar18 = (**(code **)(*param_1 + 0xf8))(param_1,uVar17);
+              uVar18 = (**(code **)(*param_1 + 0x108))
+                                 (param_1,uVar18,&DAT_001009bd,"()Ljava/lang/Object;");
+              lVar8 = (**(code **)(*param_1 + 0x110))(param_1,uVar17,uVar18);
+              if (lVar8 != 0) {
+                uVar17 = (**(code **)(*param_1 + 0xf8))(param_1,lVar8);
+                lVar9 = (**(code **)(*param_1 + 0x2f0))
+                                  (param_1,uVar17,"mClassLoader","Ljava/lang/ClassLoader;");
+                if (lVar9 != 0) {
+                  (**(code **)(*param_1 + 0x340))(param_1,lVar8,lVar9,local_278);
+                  __android_log_print(4,&DAT_001008f0,"cl patched");
+                }
+              }
+              cVar5 = (**(code **)(*param_1 + 0x128))(param_1,uVar13,uVar16);
+            }
+            uVar13 = (**(code **)(*param_1 + 0x30))(param_1,"java/lang/Thread");
+            uVar15 = (**(code **)(*param_1 + 0x388))
+                               (param_1,uVar13,"currentThread","()Ljava/lang/Thread;");
+            uVar15 = (**(code **)(*param_1 + 0x390))(param_1,uVar13,uVar15);
+            uVar13 = (**(code **)(*param_1 + 0x108))
+                               (param_1,uVar13,"setContextClassLoader","(Ljava/lang/ClassLoader;)V")
+            ;
+            (**(code **)(*param_1 + 0x1e8))(param_1,uVar15,uVar13,local_278);
+            lVar8 = (**(code **)(*param_1 + 0x480))
+                              (param_1,uVar7,&DAT_00100eeb,"Ljava/lang/String;");
+            cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+            if (cVar5 == '\0') {
+              if (((lVar8 != 0) &&
+                  (lVar8 = (**(code **)(*param_1 + 0x488))(param_1,uVar7,lVar8), lVar8 != 0)) &&
+                 (pcVar19 = (char *)(**(code **)(*param_1 + 0x548))(param_1,lVar8,0),
+                 pcVar19 != (char *)0x0)) {
+                if (*pcVar19 != '\0') {
+                  __android_log_print(4,&DAT_001008f0,"app-swap %s",pcVar19);
+                  uVar13 = (**(code **)(*param_1 + 0x30))(param_1,"java/lang/Class");
+                  uVar15 = (**(code **)(*param_1 + 0x30))(param_1,"java/lang/reflect/Field");
+                  uVar13 = (**(code **)(*param_1 + 0x108))
+                                     (param_1,uVar13,"getDeclaredField",
+                                      "(Ljava/lang/String;)Ljava/lang/reflect/Field;");
+                  uVar16 = (**(code **)(*param_1 + 0x108))
+                                     (param_1,uVar15,"setAccessible",&DAT_00100aab);
+                  uVar17 = (**(code **)(*param_1 + 0x108))
+                                     (param_1,uVar15,&DAT_001009bd,
+                                      "(Ljava/lang/Object;)Ljava/lang/Object;");
+                  uVar15 = (**(code **)(*param_1 + 0x108))
+                                     (param_1,uVar15,&DAT_00100dad,
+                                      "(Ljava/lang/Object;Ljava/lang/Object;)V");
+                  uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"mBoundApplication");
+                  lVar9 = (**(code **)(*param_1 + 0x110))(param_1,uVar10,uVar13,uVar18);
+                  if (lVar9 != 0) {
+                    (**(code **)(*param_1 + 0x1e8))(param_1,lVar9,uVar16,1);
+                    lVar9 = (**(code **)(*param_1 + 0x110))(param_1,lVar9,uVar17,uVar12);
+                    if (lVar9 != 0) {
+                      uVar18 = (**(code **)(*param_1 + 0x538))(param_1,&DAT_00100a1a);
+                      pcVar29 = *(code **)(*param_1 + 0x110);
+                      uVar20 = (**(code **)(*param_1 + 0xf8))(param_1,lVar9);
+                      lVar11 = (*pcVar29)(param_1,uVar20,uVar13,uVar18);
+                      if (lVar11 != 0) {
+                        (**(code **)(*param_1 + 0x1e8))(param_1,lVar11,uVar16,1);
+                        lVar11 = (**(code **)(*param_1 + 0x110))(param_1,lVar11,uVar17,lVar9);
+                        if (lVar11 != 0) {
+                          uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"mApplicationInfo");
+                          pcVar29 = *(code **)(*param_1 + 0x110);
+                          uVar20 = (**(code **)(*param_1 + 0xf8))(param_1);
+                          lVar14 = (*pcVar29)(param_1,uVar20,uVar13,uVar18);
+                          if (lVar14 != 0) {
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar14,uVar16,1);
+                            lVar14 = (**(code **)(*param_1 + 0x110))(param_1,lVar14,uVar17,lVar11);
+                            if (lVar14 != 0) {
+                              uVar18 = (**(code **)(*param_1 + 0xf8))(param_1,lVar14);
+                              lVar21 = (**(code **)(*param_1 + 0x2f0))
+                                                 (param_1,uVar18,"className","Ljava/lang/String;");
+                              if (lVar21 != 0) {
+                                (**(code **)(*param_1 + 0x340))(param_1,lVar14,lVar21,lVar8);
+                              }
+                            }
+                          }
+                          uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"appInfo");
+                          pcVar29 = *(code **)(*param_1 + 0x110);
+                          uVar20 = (**(code **)(*param_1 + 0xf8))(param_1,lVar9);
+                          lVar14 = (*pcVar29)(param_1,uVar20,uVar13,uVar18);
+                          if (lVar14 != 0) {
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar14,uVar16,1);
+                            cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                            if ((cVar5 == '\0') &&
+                               (lVar9 = (**(code **)(*param_1 + 0x110))(param_1,lVar14,uVar17,lVar9)
+                               , lVar9 != 0)) {
+                              uVar18 = (**(code **)(*param_1 + 0xf8))(param_1,lVar9);
+                              lVar14 = (**(code **)(*param_1 + 0x2f0))
+                                                 (param_1,uVar18,"className","Ljava/lang/String;");
+                              if (lVar14 != 0) {
+                                (**(code **)(*param_1 + 0x340))(param_1,lVar9,lVar14,lVar8);
+                              }
+                            }
+                          }
+                          cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                          if (cVar5 != '\0') {
+                            (**(code **)(*param_1 + 0x88))(param_1);
+                          }
+                          uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"mApplication");
+                          pcVar29 = *(code **)(*param_1 + 0x110);
+                          uVar20 = (**(code **)(*param_1 + 0xf8))(param_1,lVar11);
+                          lVar9 = (*pcVar29)(param_1,uVar20,uVar13,uVar18);
+                          if (lVar9 != 0) {
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar9,uVar16,1);
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar9,uVar15,lVar11,0);
+                          }
+                          uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"mInitialApplication");
+                          lVar9 = (**(code **)(*param_1 + 0x110))(param_1,uVar10,uVar13,uVar18);
+                          if (lVar9 != 0) {
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar9,uVar16,1);
+                          }
+                          uVar18 = (**(code **)(*param_1 + 0x538))(param_1,"mAllApplications");
+                          lVar14 = (**(code **)(*param_1 + 0x110))(param_1,uVar10,uVar13,uVar18);
+                          if (lVar14 == 0) {
+                            lVar14 = 0;
+                            bVar1 = true;
+                          }
+                          else {
+                            bVar1 = true;
+                            (**(code **)(*param_1 + 0x1e8))(param_1,lVar14,uVar16,1);
+                            lVar14 = (**(code **)(*param_1 + 0x110))(param_1,lVar14,uVar17,uVar12);
+                            if (lVar14 != 0) {
+                              uVar10 = (**(code **)(*param_1 + 0xf8))(param_1,lVar14);
+                              pcVar29 = *(code **)(*param_1 + 0x128);
+                              uVar10 = (**(code **)(*param_1 + 0x108))
+                                                 (param_1,uVar10,"remove","(Ljava/lang/Object;)Z");
+                              (*pcVar29)(param_1,lVar14,uVar10,param_2);
+                              bVar1 = false;
+                            }
+                          }
+                          uVar10 = (**(code **)(*param_1 + 0xf8))(param_1,lVar11);
+                          lVar21 = (**(code **)(*param_1 + 0x108))
+                                             (param_1,uVar10,"makeApplication",
+                                              "(ZLandroid/app/Instrumentation;)Landroid/app/Applicat ion;"
+                                             );
+                          cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                          if (cVar5 == '\0') {
+                            lVar28 = 0;
+                            if (lVar21 != 0) {
+                              lVar28 = (**(code **)(*param_1 + 0x110))(param_1,lVar11,lVar21,0,0);
+                            }
+                          }
+                          else {
+                            (**(code **)(*param_1 + 0x88))(param_1);
+                            lVar28 = 0;
+                          }
+                          cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                          if (cVar5 == '\0') {
+                            if (lVar28 == 0) goto LAB_001027a8;
+                            if (lVar9 != 0) {
+                              (**(code **)(*param_1 + 0x1e8))(param_1,lVar9,uVar15,uVar12,lVar28);
+                            }
+                            if (!bVar1) {
+                              uVar10 = (**(code **)(*param_1 + 0xf8))(param_1,lVar14);
+                              uVar10 = (**(code **)(*param_1 + 0x108))
+                                                 (param_1,uVar10,&DAT_00100dfc,
+                                                  "(Ljava/lang/Object;)Z");
+                              (**(code **)(*param_1 + 0x128))(param_1,lVar14,uVar10,lVar28);
+                            }
+                            uVar10 = (**(code **)(*param_1 + 0x30))
+                                               (param_1,"android/content/ContextWrapper");
+                            uVar10 = (**(code **)(*param_1 + 0x108))
+                                               (param_1,uVar10,"getBaseContext",
+                                                "()Landroid/content/Context;");
+                            lVar9 = (**(code **)(*param_1 + 0x110))(param_1,param_2,uVar10);
+                            if (lVar9 != 0) {
+                              uVar10 = (**(code **)(*param_1 + 0x538))(param_1,"mOuterContext");
+                              pcVar29 = *(code **)(*param_1 + 0x110);
+                              uVar12 = (**(code **)(*param_1 + 0xf8))(param_1,lVar9);
+                              lVar11 = (*pcVar29)(param_1,uVar12,uVar13,uVar10);
+                              if (lVar11 != 0) {
+                                (**(code **)(*param_1 + 0x1e8))(param_1,lVar11,uVar16,1);
+                                cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                                if (cVar5 == '\0') {
+                                  (**(code **)(*param_1 + 0x1e8))
+                                            (param_1,lVar11,uVar15,lVar9,lVar28);
+                                }
+                              }
+                            }
+                            cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                            if (cVar5 != '\0') {
+                              (**(code **)(*param_1 + 0x88))(param_1);
+                            }
+                            lVar9 = (**(code **)(*param_1 + 0x480))
+                                              (param_1,uVar7,"realApp","Landroid/app/Application;");
+                            cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                            if (cVar5 != '\0') {
+                              (**(code **)(*param_1 + 0x88))(param_1);
+                            }
+                            if (lVar9 != 0) {
+                              (**(code **)(*param_1 + 0x4d0))(param_1,uVar7,lVar9,lVar28);
+                            }
+                            pcVar22 = "app-swap OK";
+                            uVar7 = 4;
+                          }
+                          else {
+                            (**(code **)(*param_1 + 0x88))(param_1);
+LAB_001027a8:
+                            pcVar22 = "makeApp fail";
+                            uVar7 = 6;
+                          }
+                          __android_log_print(uVar7,&DAT_001008f0,pcVar22);
+                        }
+                      }
+                    }
+                  }
+                  cVar5 = (**(code **)(*param_1 + 0x720))(param_1);
+                  if (cVar5 != '\0') {
+                    (**(code **)(*param_1 + 0x88))(param_1);
+                  }
+                }
+                (**(code **)(*param_1 + 0x550))(param_1,lVar8,pcVar19);
+              }
+            }
+            else {
+              (**(code **)(*param_1 + 0x88))(param_1);
+            }
+            pcVar19 = "shell init done";
+            uVar7 = 4;
+            goto LAB_00102108;
+          }
+          __android_log_print(6,&DAT_001008f0,"bad count %u",uVar23);
+        }
+        free(__ptr);
+      }
+      lVar25 = *(long *)(lVar25 + 0x28);
+      goto LAB_00102114;
+    }
+    pcVar19 = "values null";
+  }
+  __android_log_print(6,&DAT_001008f0,pcVar19);
+  lVar25 = *(long *)(lVar25 + 0x28);
+LAB_00102114:
+  if (lVar25 == local_70) {
+    return;
+  }
+                    /* WARNING: Subroutine does not return */
+  __stack_chk_fail();
+}
+
+
